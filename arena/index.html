@@ -145,6 +145,7 @@
     @media(max-width:470px){.hero h1{font-size:clamp(52px,16vw,75px)}.hero-copy{font-size:15px}.hero-art{height:275px}.hero-art .orbit{width:258px}.hero-art .angled{height:195px;width:195px}.hero-art .brandmark{font-size:113px}.hero-art .tiny{font-size:8px;padding:8px;bottom:5px}.roster-grid{gap:10px}.player{padding:13px;min-height:275px}.avatar{width:135px;height:147px}.player h3{font-size:20px}.player .type{font-size:8px}.feature{padding:26px}.feature h3{font-size:35px}.footer-main{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
+  <link rel="stylesheet" href="arcade-ui.css">
 </head>
 <body>
   <header class="topbar">
@@ -152,7 +153,7 @@
       <a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a>
       <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="navItems">☰ MENU</button>
       <div class="nav-items" id="navItems">
-        <a href="#top">Home</a><a href="#modes">Play Games</a><a href="#roster">Roster</a><a href="#events">Events</a>
+        <a href="#top">Home</a><a href="#modes">Play Games</a><a href="#arcade-hub">Player HQ</a><a href="#roster">Roster</a><a href="#events">Events</a>
         <a class="nav-back" href="https://alewismike-ux.github.io/">↖ Nexora Studios</a>
       </div>
     </nav>
@@ -164,7 +165,7 @@
           <div class="eyebrow">Enter a new era of competition</div>
           <h1 id="heroTitle">PLAY<br><span class="outline">BEYOND</span><br><span class="bright">LIMITS.</span></h1>
           <p class="hero-copy">Welcome to <strong>PHASE NINE</strong> — a high-energy arena built for bold moves, close calls, and unforgettable moments. Choose a game and start playing.</p>
-          <div class="actions"><a href="#modes" class="btn primary">Play Games <span aria-hidden="true">↗</span></a><a href="#roster" class="btn secondary">Meet the roster <span aria-hidden="true">↓</span></a></div>
+          <div class="actions"><a href="#modes" class="btn primary">Play Games <span aria-hidden="true">↗</span></a><a href="#arcade-hub" class="btn secondary">Player HQ <span aria-hidden="true">↓</span></a></div>
           <div class="microline"><b>AIM TRAINER</b><i></i><b>CYBER RACER</b><i></i><b>NEON RUNNER</b><i></i><span>Designed for the next level</span></div>
         </div>
         <div class="hero-art" aria-label="Glowing Phase Nine esports emblem" role="img">
@@ -202,6 +203,7 @@
         <p class="showcase-note">All three games are playable in your browser. Click any game card to start. No downloads or account required.</p>
       </div>
     </section>
+    <section id="arcade-hub" class="arcade-hub" aria-label="Phase Nine player dashboard, personal leaderboard, achievements, daily challenges, reward shop and settings"><div class="hub-wrap"><h2>Loading Player HQ…</h2><p>Enable JavaScript to view your personal arcade progress and rewards.</p></div></section>
     <section class="section section-alt" id="roster" aria-labelledby="rosterTitle">
       <div class="wrap">
         <div class="section-heading reveal"><div><div class="eyebrow">Meet the squad</div><h2 id="rosterTitle">Built different. <span>Together.</span></h2></div><p>A fictional roster illustrating how an esports team could showcase player roles and personality.</p></div>
@@ -229,6 +231,8 @@
     <section class="about-band" id="about"><div class="wrap about-inner"><div><div class="eyebrow">Designed by Nexora Studios</div><h2>Crafted for the <span style="color:var(--cyan)">next generation.</span></h2><p>PHASE NINE is an original esports website concept showcasing immersive visual design, responsive layouts, and functional interactions. It is not an actual esports organization or event registration service.</p></div><a href="https://alewismike-ux.github.io/#portfolio" class="btn primary">← Back to Nexora Studios</a></div></section>
   </main>
   <footer class="footer"><div class="wrap"><div class="footer-main"><a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a><a href="https://alewismike-ux.github.io/" class="btn secondary small">← Return to Nexora Studios</a></div><div class="footer-sub"><span>© <span id="year">2026</span> Phase Nine · Site concept by Nexora Studios</span><a href="#top">Back to top ↑</a></div></div></footer>
+  <script src="progress.js"></script>
+  <script src="arcade-ui.js"></script>
   <script>
     // Responsive navigation
     const menuButton=document.getElementById('menuButton');
