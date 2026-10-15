@@ -145,7 +145,7 @@
     @media(max-width:470px){.hero h1{font-size:clamp(52px,16vw,75px)}.hero-copy{font-size:15px}.hero-art{height:275px}.hero-art .orbit{width:258px}.hero-art .angled{height:195px;width:195px}.hero-art .brandmark{font-size:113px}.hero-art .tiny{font-size:8px;padding:8px;bottom:5px}.roster-grid{gap:10px}.player{padding:13px;min-height:275px}.avatar{width:135px;height:147px}.player h3{font-size:20px}.player .type{font-size:8px}.feature{padding:26px}.feature h3{font-size:35px}.footer-main{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
-  <link rel="stylesheet" href="arcade-ui.css">
+  <link rel="stylesheet" href="arcade-ui.css"><link rel="stylesheet" href="next-ui.css">
 </head>
 <body>
   <header class="topbar">
@@ -153,7 +153,7 @@
       <a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a>
       <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="navItems">☰ MENU</button>
       <div class="nav-items" id="navItems">
-        <a href="#top">Home</a><a href="#modes">Play Games</a><a href="#arcade-hub">Player HQ</a><a href="#roster">Roster</a><a href="#events">Events</a>
+        <a href="#top">Home</a><a href="#modes">Play Games</a><a href="#arcade-hub">Player HQ</a><a href="#game-library">Game Library</a><a href="#story-missions">Campaign</a><a href="#roster">Roster</a><a href="#events">Events</a>
         <a class="nav-back" href="https://alewismike-ux.github.io/">↖ Nexora Studios</a>
       </div>
     </nav>
@@ -233,6 +233,7 @@
   <footer class="footer"><div class="wrap"><div class="footer-main"><a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a><a href="https://alewismike-ux.github.io/" class="btn secondary small">← Return to Nexora Studios</a></div><div class="footer-sub"><span>© <span id="year">2026</span> Phase Nine · Site concept by Nexora Studios</span><a href="#top">Back to top ↑</a></div></div></footer>
   <script src="progress.js"></script>
   <script src="arcade-ui.js"></script>
+  <script src="next-ui.js"></script>
   <script>
     // Responsive navigation
     const menuButton=document.getElementById('menuButton');
