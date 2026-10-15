@@ -11,7 +11,9 @@
       {id:'aim-gold', type:'skin', label:'Solar Gold', price:150, color:'#ffdf77'},
       {id:'aim-grid', type:'map', label:'Orbit Grid', price:0, color:'#122c51'},
       {id:'aim-nebula', type:'map', label:'Nebula Field', price:100, color:'#3b1b60'},
-      {id:'aim-ice', type:'map', label:'Arctic Station', price:180, color:'#0c4f60'}
+      {id:'aim-ice', type:'map', label:'Arctic Station', price:180, color:'#0c4f60'},
+      {id:'aim-lime',type:'skin',label:'Toxic Pulse',price:260,color:'#8aff8a'},
+      {id:'aim-sunset',type:'map',label:'Crimson Eclipse',price:270,color:'#6b254e'}
     ],
     runner: [
       {id:'runner-cyan', type:'skin', label:'Neon Scout', price:0, color:'#72e5ff'},
@@ -19,7 +21,9 @@
       {id:'runner-orange', type:'skin', label:'Solar Sprinter', price:155, color:'#ffae6e'},
       {id:'runner-city', type:'map', label:'Midnight City', price:0, color:'#15375d'},
       {id:'runner-sunset', type:'map', label:'Synthwave Sunset', price:110, color:'#933f84'},
-      {id:'runner-ice', type:'map', label:'Frozen Skyline', price:180, color:'#38799b'}
+      {id:'runner-ice', type:'map', label:'Frozen Skyline', price:180, color:'#38799b'},
+      {id:'runner-lime',type:'skin',label:'Bio Runner',price:270,color:'#99fb78'},
+      {id:'runner-forest',type:'map',label:'Digital Jungle',price:300,color:'#146b52'}
     ],
     racer: [
       {id:'racer-cyan', type:'skin', label:'Cyber Blue', price:0, color:'#6beaff'},
@@ -27,7 +31,9 @@
       {id:'racer-gold', type:'skin', label:'Golden Nitro', price:160, color:'#ffd675'},
       {id:'racer-highway', type:'map', label:'Hyperway', price:0, color:'#214b6a'},
       {id:'racer-sunset', type:'map', label:'Afterglow Run', price:110, color:'#82426a'},
-      {id:'racer-space', type:'map', label:'Cosmic Drift', price:190, color:'#423c92'}
+      {id:'racer-space', type:'map', label:'Cosmic Drift', price:190, color:'#423c92'},
+      {id:'racer-red',type:'skin',label:'Crimson Velocity',price:280,color:'#ff6379'},
+      {id:'racer-forest',type:'map',label:'Emerald Circuit',price:310,color:'#12684e'}
     ]
   };
   const badges = [
@@ -44,6 +50,24 @@
     {id:'level5',icon:'⭐',label:'Rising Star',desc:'Reach level 5.',check:p=>Math.floor(p.xp/150)+1>=5},
     {id:'collector',icon:'🎨',label:'Skin Collector',desc:'Unlock 3 cosmetics.',check:p=>Object.keys(p.unlocked).filter(x=>p.unlocked[x]&&!x.endsWith('-cyan')&&!x.endsWith('-city')&&!x.endsWith('-grid')&&!x.endsWith('-highway')).length>=3}
   ];
+  // Solo campaign: each mission unlocks the next one. No multiplayer claim.
+  const missions=[
+    {id:'signal',title:'01 / Wake the Signal',game:'aim',mode:'classic',target:8,xp:75,credits:45,description:'Hit 8 targets in a Classic Aim Trainer round.'},
+    {id:'dash',title:'02 / City Breakout',game:'runner',mode:'classic',target:100,xp:100,credits:65,description:'Score 100 in a Classic Neon Runner run.'},
+    {id:'pursuit',title:'03 / Neon Pursuit',game:'racer',mode:'classic',target:150,xp:110,credits:70,description:'Score 150 in a Classic Cyber Racer race.'},
+    {id:'precision',title:'04 / Precision Override',game:'aim',mode:'blitz',target:10,xp:140,credits:90,description:'Score 10 hits in Aim Trainer Blitz.'},
+    {id:'rush',title:'05 / Velocity Code',game:'runner',mode:'rush',target:180,xp:150,credits:100,description:'Score 180 in Neon Runner Rush.'},
+    {id:'finale',title:'06 / Final Circuit',game:'racer',mode:'sprint',target:250,xp:200,credits:140,description:'Score 250 in Cyber Racer Sprint.'}
+  ];
+  const avatars=[{id:'pilot',icon:'🚀',label:'Pilot'},{id:'ghost',icon:'👾',label:'Ghost'},{id:'star',icon:'⭐',label:'Star'},{id:'robot',icon:'🤖',label:'Robot'},{id:'comet',icon:'☄️',label:'Comet'}];
+  const banners=[{id:'electric',label:'Electric',color:'#3969bd'},{id:'nebula',label:'Nebula',color:'#743ab4'},{id:'sunset',label:'Sunset',color:'#b84c8a'},{id:'verdant',label:'Verdant',color:'#1b9e84'}];
+  const modes={
+    aim:[{id:'classic',name:'Classic',desc:'30-second standard round'},{id:'blitz',name:'Blitz',desc:'15-second speed trial'},{id:'marathon',name:'Marathon',desc:'45-second endurance trial'}],
+    runner:[{id:'classic',name:'Classic',desc:'Balanced endless run'},{id:'rush',name:'Rush',desc:'Faster obstacles and higher speed'},{id:'zen',name:'Zen Run',desc:'Slower practice course'}],
+    racer:[{id:'classic',name:'Classic',desc:'Three lives and standard pace'},{id:'sprint',name:'Sprint',desc:'Faster traffic and two lives'},{id:'endurance',name:'Endurance',desc:'Steady speed and five lives'}]
+  };
+  function weekString(){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+  function weeklyCup(g){const targets={aim:10,runner:200,racer:220};return {game:g,week:weekString(),target:targets[g],xp:80,credits:65};}
   function dayString(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
   const challenges = {
     aim: [{label:'Hit 8 targets in one round',metric:'score',target:8},{label:'Hit 14 targets in one round',metric:'score',target:14},{label:'Hit 20 targets in one round',metric:'score',target:20}],
@@ -54,6 +78,8 @@
   function fresh(){
     return {version:2,xp:0,credits:0,plays:0,unlocked:{},equipped:{},achievements:[],
       settings:{theme:'electric',sound:true,effects:true},
+      profile:{name:'PILOT',avatar:'pilot',banner:'electric',title:'New Challenger'},
+      story:{completed:[]},weekly:{week:weekString(),bests:{aim:0,runner:0,racer:0},claimed:[]},
       stats:Object.fromEntries(games.map(g=>[g,{best:0,plays:0,history:[]} ])),
       daily:{date:dayString(),progress:{aim:0,runner:0,racer:0},completed:[]}};
   }
@@ -70,6 +96,17 @@
     if(data.unlocked&&typeof data.unlocked==='object')for(const item of Object.values(catalog).flat())if(data.unlocked[item.id]===true)p.unlocked[item.id]=true;
     if(data.equipped&&typeof data.equipped==='object')p.equipped={...data.equipped};
     if(Array.isArray(data.achievements))p.achievements=data.achievements.filter(id=>badges.some(x=>x.id===id));
+    if(data.profile&&typeof data.profile==='object'){
+      p.profile.name=String(data.profile.name||'PILOT').trim().slice(0,18).replace(/[^\p{L}\p{N} _-]/gu,'')||'PILOT';
+      if(avatars.some(a=>a.id===data.profile.avatar))p.profile.avatar=data.profile.avatar;
+      if(banners.some(a=>a.id===data.profile.banner))p.profile.banner=data.profile.banner;
+      p.profile.title=String(data.profile.title||'New Challenger').slice(0,26);
+    }
+    if(data.story&&Array.isArray(data.story.completed))p.story.completed=data.story.completed.filter(id=>missions.some(m=>m.id===id));
+    if(data.weekly?.week===weekString()){
+      for(const g of games)p.weekly.bests[g]=Math.max(0,Math.floor(Number(data.weekly.bests?.[g])||0));
+      if(Array.isArray(data.weekly.claimed))p.weekly.claimed=data.weekly.claimed.filter(g=>games.includes(g));
+    }
     if(data.settings&&typeof data.settings==='object')p.settings={theme:['electric','magenta','arctic'].includes(data.settings.theme)?data.settings.theme:'electric',sound:data.settings.sound!==false,effects:data.settings.effects!==false};
     if(data.daily?.date===dayString()){
       p.daily={date:dayString(),progress:{aim:0,runner:0,racer:0},completed:[]};
@@ -90,6 +127,13 @@
   function awardBadges(){let freshBadges=[];for(const b of badges)if(!state.achievements.includes(b.id)&&b.check(state)){
     state.achievements.push(b.id);state.credits+=15;freshBadges.push(b.label);
   }return freshBadges;}
+  function profile(values){if(!values||typeof values!=='object')return false;
+    if(values.name!==undefined)state.profile.name=String(values.name).trim().replace(/[^\p{L}\p{N} _-]/gu,'').slice(0,18)||'PILOT';
+    if(avatars.some(x=>x.id===values.avatar))state.profile.avatar=values.avatar;
+    if(banners.some(x=>x.id===values.banner))state.profile.banner=values.banner;
+    persist();notify();return true;
+  }
+  function activeMission(){return missions.find(m=>!state.story.completed.includes(m.id))||null;}
   function record(game,points,details={}){
     if(!games.includes(game))return {ok:false};
     const score=Math.max(0,Math.floor(Number(points)||0));if(!Number.isFinite(score))return {ok:false};
@@ -105,8 +149,19 @@
     if(state.daily.progress[game]>=daily.target&&!state.daily.completed.includes(game)){
       state.daily.completed.push(game);state.xp+=50;state.credits+=35;challengeCompleted=true;
     }
+    // Solo weekly score trials: record a device-local best; one prize per game each week.
+    const cup=weeklyCup(game);state.weekly.bests[game]=Math.max(state.weekly.bests[game],score);
+    let cupCompleted=false;
+    if(score>=cup.target&&!state.weekly.claimed.includes(game)){
+      state.weekly.claimed.push(game);state.xp+=cup.xp;state.credits+=cup.credits;cupCompleted=true;
+    }
+    // Sequential campaign. A mission requires the game, mode, and score.
+    const mission=activeMission();let missionCompleted=null;
+    if(mission&&mission.game===game&&mission.mode===(details.mode||'classic')&&score>=mission.target){
+      state.story.completed.push(mission.id);state.xp+=mission.xp;state.credits+=mission.credits;missionCompleted=mission.title;
+    }
     const newBadges=awardBadges();persist();notify();
-    return {ok:true,gainedXp,gainedCredits: gainedCredits+(challengeCompleted?35:0),challengeCompleted,newBadges,level:rank()};
+    return {ok:true,gainedXp:gainedXp+(challengeCompleted?50:0)+(cupCompleted?cup.xp:0)+(missionCompleted?mission.xp:0),gainedCredits:gainedCredits+(challengeCompleted?35:0)+(cupCompleted?cup.credits:0)+(missionCompleted?mission.credits:0),challengeCompleted,cupCompleted,missionCompleted,newBadges,level:rank()};
   }
   function buy(id){const item=Object.values(catalog).flat().find(x=>x.id===id);if(!item)return {ok:false,message:'Unknown reward'};
     if(state.unlocked[id])return {ok:true,message:'Already unlocked'};
@@ -135,5 +190,5 @@
     state=defaults(fresh());persist();apply();notify();}
   // Save the migration and initial free cosmetics.
   persist();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
-  window.PhaseNine={games,names,catalog,badges,snapshot,rank,record,buy,equip,equipItem,setting,tone,reset,challengeFor,dayString};
+  window.PhaseNine={games,names,catalog,badges,snapshot,rank,record,buy,equip,equipItem,setting,tone,reset,challengeFor,dayString,missions,modes,avatars,banners,profile,activeMission,weeklyCup,weekString};
 })();
