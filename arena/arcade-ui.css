@@ -1,0 +1,57 @@
+/* Phase Nine Arcade: dashboard, cosmetics, challenges and settings */
+:root{--arcade-accent:#70edff;--arcade-purple:#a595ff}
+:root[data-arcade-theme="magenta"]{--arcade-accent:#ff82de;--arcade-purple:#a58cff}
+:root[data-arcade-theme="arctic"]{--arcade-accent:#8affd7;--arcade-purple:#8bd8ff}
+.arcade-hub{position:relative;padding:88px 0;color:#f4f7ff;background:radial-gradient(ellipse at 20% 4%,#40276455,transparent 42%),radial-gradient(ellipse at 85% 90%,#14587255,transparent 42%),#0a0d21}
+.arcade-hub *,.game-rewards *{box-sizing:border-box}
+.arcade-hub .hub-wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+.arcade-hub .hub-eyebrow{font-size:.73rem;color:var(--arcade-accent);font-weight:900;letter-spacing:.19em;text-transform:uppercase}
+.arcade-hub .hub-headline{font-size:clamp(2rem,5vw,4rem);line-height:1.08;margin:14px 0 12px;letter-spacing:-.05em;text-transform:uppercase}
+.arcade-hub .hub-sub{max-width:720px;color:#bcc9e6;line-height:1.7;font-size:.95rem;margin:0 0 28px}
+.arcade-hub .hub-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;margin-top:22px}
+.arcade-hub .hub-card{grid-column:span 6;min-width:0;border:1px solid #6374ab64;border-radius:18px;background:linear-gradient(145deg,#1b203e,#0e142a);padding:clamp(18px,2.5vw,28px)}
+.arcade-hub .hub-card.wide{grid-column:span 12}.arcade-hub .hub-card.third{grid-column:span 4}
+.arcade-hub .hub-card h3{font-size:1.25rem;margin:0 0 7px;font-weight:900;letter-spacing:-.02em}
+.arcade-hub .hub-card p{margin:0 0 15px;color:#bfc9e4;font-size:.85rem;line-height:1.65}
+.arcade-hub .hub-card-head{display:flex;align-items:start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:15px}
+.arcade-hub .hub-tag{font-size:.7rem;letter-spacing:.12em;color:var(--arcade-accent);font-weight:900;text-transform:uppercase}
+.arcade-hub .meter{height:12px;border-radius:20px;background:#060e24;overflow:hidden;border:1px solid #6474ae77;margin:15px 0 9px}
+.arcade-hub .meter>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--arcade-accent),var(--arcade-purple));transition:width .4s}
+.arcade-hub .hub-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.arcade-hub .hub-number{background:#0b132b;border:1px solid #596a9b77;border-radius:12px;padding:15px}
+.arcade-hub .hub-number b{font-size:clamp(20px,3vw,29px);display:block;color:white}.arcade-hub .hub-number span{font-size:.73rem;color:#afbbdc}
+.arcade-hub .hub-action,.game-rewards button,.game-rewards select,.arcade-hub select{font:inherit}
+.arcade-hub .hub-action{display:inline-flex;align-items:center;justify-content:center;border:1px solid #617aaf;background:#222e53;color:white;border-radius:9px;padding:10px 15px;font-size:.8rem;font-weight:850;text-decoration:none;cursor:pointer;transition:.2s}
+.arcade-hub .hub-action:hover,.arcade-hub .hub-action:focus-visible{border-color:var(--arcade-accent);background:#334773}
+.arcade-hub .hub-action.primary{background:var(--arcade-accent);border-color:var(--arcade-accent);color:#0a1730}
+.arcade-hub .hub-action:disabled{cursor:default;opacity:.65}
+.arcade-hub select,.game-rewards select{width:100%;min-height:42px;border:1px solid #7587c6;border-radius:9px;padding:8px 12px;color:white;background:#192346}
+.arcade-hub select option,.game-rewards select option{background:#182343;color:white}
+.arcade-hub .hub-stack{display:grid;gap:10px}
+.arcade-hub .score-row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px;background:#111930;border:1px solid #4b5e8c73;border-radius:10px}
+.arcade-hub .score-row b{font-size:.83rem}.arcade-hub .score-row span{font-size:.79rem;color:#b3c2e5}
+.arcade-hub .score-row a{color:var(--arcade-accent);text-decoration:none}
+.arcade-hub .award-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.arcade-hub .award{padding:12px;border:1px solid #526391;border-radius:12px;background:#121a37;min-height:142px}
+.arcade-hub .award.locked{filter:grayscale(.8);opacity:.61}.arcade-hub .award .emoji{font-size:26px;display:block;margin-bottom:9px}
+.arcade-hub .award b{font-size:.85rem;display:block;margin-bottom:6px}.arcade-hub .award small{color:#b5c3df;font-size:.74rem;line-height:1.5;display:block}
+.arcade-hub .shop-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.arcade-hub .shop-item{padding:15px;background:#101935;border:1px solid #5c6fa277;border-radius:14px;display:grid;gap:10px}
+.arcade-hub .shop-color{width:100%;height:60px;background:radial-gradient(circle at 40% 40%,var(--chip),#172044);border:1px solid #a3b1e96e;border-radius:9px}
+.arcade-hub .shop-item b{font-size:.88rem}.arcade-hub .shop-item small{color:#aebcdb;font-size:.75rem}
+.arcade-hub .shop-controls{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center}
+.arcade-hub .challenge{background:#111a37;border:1px solid #4f6493;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.arcade-hub .challenge b{font-size:.83rem}.arcade-hub .challenge small{color:#bfc7e2;font-size:.78rem}.arcade-hub .challenge.done{border-color:#4ff2c0}
+.arcade-hub .setting-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #46547b}
+.arcade-hub .setting-row:last-child{border-bottom:0}.arcade-hub .setting-row b{font-size:.86rem}.arcade-hub .setting-row small{font-size:.75rem;color:#b1bbd6;display:block}
+.arcade-hub .setting-row input[type="checkbox"]{width:23px;height:23px;accent-color:#70edff}
+.arcade-hub .hub-notice{color:#c7d4ec;font-size:.78rem;line-height:1.6;margin:15px 0 0}
+.arcade-hub .hub-toast,.game-rewards .game-feedback{color:#96ffe1;font-size:.78rem;min-height:20px;margin-top:8px}
+.arcade-lowfx *, .arcade-lowfx *::before,.arcade-lowfx *::after{animation:none!important;transition-duration:0s!important}
+.game-rewards{max-width:1140px;margin:20px auto 28px;background:linear-gradient(125deg,#1d2250,#101a31);border:1px solid #5c77bb;border-radius:15px;color:#f2f7ff;padding:18px 22px}
+.game-rewards h2{font-size:1.2rem;margin:0 0 8px}.game-rewards p{font-size:.82rem;color:#b8cce8;line-height:1.6;margin:6px 0 12px}
+.game-rewards .reward-line{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}
+.game-rewards label{font-size:.78rem;font-weight:800;display:grid;gap:6px}.game-rewards a{color:#7cecff;font-size:.84rem;font-weight:800;white-space:nowrap}
+.game-rewards .game-info{color:#e6d991;font-size:.8rem;font-weight:800;margin-top:10px}
+@media(max-width:890px){.arcade-hub .hub-card,.arcade-hub .hub-card.third{grid-column:span 12}.arcade-hub .award-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.arcade-hub{padding:58px 0}.arcade-hub .hub-wrap{width:calc(100% - 28px)}.arcade-hub .hub-numbers{grid-template-columns:repeat(3,minmax(0,1fr))}.arcade-hub .hub-number{padding:11px 8px}.arcade-hub .hub-number b{font-size:1.1rem}.arcade-hub .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.arcade-hub .award-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.arcade-hub .shop-controls{grid-template-columns:1fr}.game-rewards .reward-line{grid-template-columns:1fr 1fr}.game-rewards .reward-line a{grid-column:span 2}}
