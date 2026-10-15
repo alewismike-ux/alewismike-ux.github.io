@@ -68,8 +68,8 @@
     .filter:hover{border-color:var(--cyan);color:white}
     .filter[aria-pressed="true"]{background:#4adff6;color:#081523;border-color:var(--cyan)}
     .modes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-    .mode-card{display:block;color:inherit;text-decoration:none;border:1px solid #444d7e;border-radius:var(--radius);overflow:hidden;background:#111629;transition:transform .25s,border .25s,box-shadow .25s}
-    .mode-card:hover,.mode-card:focus-visible{transform:translateY(-8px);border-color:#7f87ef;box-shadow:0 18px 40px #0007;outline-offset:3px}
+    .mode-card{border:1px solid #444d7e;border-radius:var(--radius);overflow:hidden;background:#111629;transition:transform .25s,border .25s,box-shadow .25s}
+    .mode-card:hover{transform:translateY(-8px);border-color:#7f87ef;box-shadow:0 18px 40px #0007}
     .mode-card[hidden]{display:none}
     .mode-art{position:relative;height:225px;display:grid;place-items:center;overflow:hidden;isolation:isolate}
     .mode-art::before{content:"";position:absolute;inset:-60px;background:repeating-linear-gradient(125deg,transparent 0,transparent 26px,#ffffff09 27px,#ffffff09 28px);transform:rotate(-4deg)}
@@ -145,15 +145,14 @@
     @media(max-width:470px){.hero h1{font-size:clamp(52px,16vw,75px)}.hero-copy{font-size:15px}.hero-art{height:275px}.hero-art .orbit{width:258px}.hero-art .angled{height:195px;width:195px}.hero-art .brandmark{font-size:113px}.hero-art .tiny{font-size:8px;padding:8px;bottom:5px}.roster-grid{gap:10px}.player{padding:13px;min-height:275px}.avatar{width:135px;height:147px}.player h3{font-size:20px}.player .type{font-size:8px}.feature{padding:26px}.feature h3{font-size:35px}.footer-main{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
-  <link rel="stylesheet" href="arcade-ui.css"><link rel="stylesheet" href="next-ui.css">
-</head>
+<link rel="stylesheet" href="arcade-ui.css"><link rel="stylesheet" href="next-ui.css"></head>
 <body>
   <header class="topbar">
     <nav class="wrap nav" aria-label="Main navigation">
       <a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a>
       <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="navItems">☰ MENU</button>
       <div class="nav-items" id="navItems">
-        <a href="#top">Home</a><a href="#modes">Play Games</a><a href="#arcade-hub">Player HQ</a><a href="#game-library">Game Library</a><a href="#story-missions">Campaign</a><a href="#roster">Roster</a><a href="#events">Events</a>
+        <a href="#top">Home</a><a href="#modes">Game modes</a><a href="#roster">Roster</a><a href="#events">Events</a>
         <a class="nav-back" href="https://alewismike-ux.github.io/">↖ Nexora Studios</a>
       </div>
     </nav>
@@ -164,9 +163,9 @@
         <div>
           <div class="eyebrow">Enter a new era of competition</div>
           <h1 id="heroTitle">PLAY<br><span class="outline">BEYOND</span><br><span class="bright">LIMITS.</span></h1>
-          <p class="hero-copy">Welcome to <strong>PHASE NINE</strong> — a high-energy arena built for bold moves, close calls, and unforgettable moments. Choose a game and start playing.</p>
-          <div class="actions"><a href="#modes" class="btn primary">Play Games <span aria-hidden="true">↗</span></a><a href="#arcade-hub" class="btn secondary">Player HQ <span aria-hidden="true">↓</span></a></div>
-          <div class="microline"><b>AIM TRAINER</b><i></i><b>CYBER RACER</b><i></i><b>NEON RUNNER</b><i></i><span>Designed for the next level</span></div>
+          <p class="hero-copy">Welcome to <strong>PHASE NINE</strong> — a high-energy arena built for bold moves, close calls, and unforgettable moments. Choose your mode. Find your edge.</p>
+          <div class="actions"><a href="#modes" class="btn primary">Explore the arena <span aria-hidden="true">↗</span></a><a href="#roster" class="btn secondary">Meet the roster <span aria-hidden="true">↓</span></a></div>
+          <div class="microline"><b>TACTICAL</b><i></i><b>RACING</b><i></i><b>ARENA</b><i></i><span>Designed for the next level</span></div>
         </div>
         <div class="hero-art" aria-label="Glowing Phase Nine esports emblem" role="img">
           <div class="orbit"></div><div class="angled"></div><div class="coordinates">P9 // 001 // ARENA</div><div class="brandmark">P9</div><div class="tiny">SYSTEM ONLINE · 09</div>
@@ -176,34 +175,33 @@
     <div class="ticker" aria-label="Gaming categories"><div class="wrap inner"><span>01 <strong>//</strong> THINK FAST</span><span>02 <strong>//</strong> PLAY SMART</span><span>03 <strong>//</strong> STAY SHARP</span><span>04 <strong>//</strong> LEVEL UP</span></div></div>
     <section class="section" id="modes" aria-labelledby="modesTitle">
       <div class="wrap">
-        <div class="section-heading reveal"><div><div class="eyebrow">The battleground</div><h2 id="modesTitle">Choose your <span>mode.</span></h2></div><p>Three playable browser games. Choose your challenge, then click any card to start playing instantly.</p></div>
+        <div class="section-heading reveal"><div><div class="eyebrow">The battleground</div><h2 id="modesTitle">Choose your <span>mode.</span></h2></div><p>Three gaming concepts. Different styles. One sleek arena. Select a category or open a card to explore more.</p></div>
         <div class="filters" aria-label="Filter game modes">
           <button type="button" class="filter" aria-pressed="true" data-filter="all">All modes</button>
-          <button type="button" class="filter" aria-pressed="false" data-filter="tactical">Aim Trainer</button>
-          <button type="button" class="filter" aria-pressed="false" data-filter="racing">Cyber Racer</button>
-          <button type="button" class="filter" aria-pressed="false" data-filter="arena">Neon Runner</button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="tactical">Tactical</button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="racing">Racing</button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="arena">Arena</button>
         </div>
         <div class="modes-grid">
-          <a class="mode-card reveal" data-category="tactical" href="aim/" aria-label="Play Aim Trainer">
-            <div class="mode-art tactical"><span class="corner-id">GAME // 01 · PLAYABLE</span>
+          <article class="mode-card reveal" data-category="tactical">
+            <div class="mode-art tactical"><span class="corner-id">MODE // 01</span>
               <svg aria-hidden="true" viewBox="0 0 120 120" fill="none"><path d="M60 7 109 35v50L60 113 11 85V35L60 7Z" stroke="#9ef7ff" stroke-width="4"/><path d="M60 20v80M20 60h80" stroke="white" stroke-width="3"/><circle cx="60" cy="60" r="21" stroke="#98fff4" stroke-width="5"/><circle cx="60" cy="60" r="5" fill="white"/></svg>
-            </div><div class="mode-info"><span class="eyebrow">Precision / Reflexes</span><h3>Aim Trainer</h3><p>Click glowing targets against the clock. Choose your difficulty, track your accuracy, and beat your personal best.</p><div class="card-footer"><span class="subtag">30-second challenge</span><span class="inline-button">Play Now ↗</span></div></div>
-          </a>
-          <a class="mode-card reveal" data-category="racing" href="racer/" aria-label="Play Cyber Racer">
-            <div class="mode-art speed"><span class="corner-id">GAME // 02 · PLAYABLE</span>
+            </div><div class="mode-info"><span class="eyebrow">Tactical / Teamplay</span><h3>Rift Protocol</h3><p>Outthink the opposition in a neon-lit, objective-based challenge where every call matters.</p><div class="card-footer"><span class="subtag">Strategy + Precision</span><button type="button" class="inline-button" data-mode="tactical">Explore ↗</button></div></div>
+          </article>
+          <article class="mode-card reveal" data-category="racing">
+            <div class="mode-art speed"><span class="corner-id">MODE // 02</span>
               <svg aria-hidden="true" viewBox="0 0 120 120" fill="none"><path d="M68 8 21 68h38l-9 45 49-66H61L68 8Z" fill="#8ff8ff" stroke="white" stroke-width="3" stroke-linejoin="round"/><path d="M10 30h33M5 46h26M86 89h22" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
-            </div><div class="mode-info"><span class="eyebrow">Arcade / Driving</span><h3>Cyber Racer</h3><p>Change lanes on a neon highway, dodge traffic, collect energy cells, and chase the highest score.</p><div class="card-footer"><span class="subtag">Arcade racing</span><span class="inline-button">Play Now ↗</span></div></div>
-          </a>
-          <a class="mode-card reveal" data-category="arena" href="runner/" aria-label="Play Neon Runner">
-            <div class="mode-art duel"><span class="corner-id">GAME // 03 · PLAYABLE</span>
-              <svg aria-hidden="true" viewBox="0 0 120 120" fill="none"><path d="M66 9 29 65h30l-7 46 41-62H66L77 9Z" fill="#ffe0fa" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M18 35h25M10 52h25M85 81h26" stroke="#e7a5ff" stroke-width="4" stroke-linecap="round"/></svg>
-            </div><div class="mode-info"><span class="eyebrow">Endless / Platformer</span><h3>Neon Runner</h3><p>Jump the barriers, collect glowing orbs, and survive as the cyber-city speeds up around you.</p><div class="card-footer"><span class="subtag">Jump + Survive</span><span class="inline-button">Play Now ↗</span></div></div>
-          </a>
+            </div><div class="mode-info"><span class="eyebrow">Racing / Reflexes</span><h3>Overdrive X</h3><p>A high-speed experience built around precise timing, sharp corners, and big finishes.</p><div class="card-footer"><span class="subtag">Speed + Control</span><button type="button" class="inline-button" data-mode="racing">Explore ↗</button></div></div>
+          </article>
+          <article class="mode-card reveal" data-category="arena">
+            <div class="mode-art duel"><span class="corner-id">MODE // 03</span>
+              <svg aria-hidden="true" viewBox="0 0 120 120" fill="none"><path d="M60 9 104 32l-9 52-35 27-35-27-9-52L60 9Z" stroke="#ffe0fa" stroke-width="4"/><path d="m29 38 18 16M91 38 73 54M40 74l20-17 20 17M60 57v32" stroke="white" stroke-width="5" stroke-linecap="round"/><path d="M46 26h28" stroke="#e7a5ff" stroke-width="5"/></svg>
+            </div><div class="mode-info"><span class="eyebrow">Competitive / Duels</span><h3>Zero Hour</h3><p>Step into a tight, competitive arena where positioning and smart plays make the difference.</p><div class="card-footer"><span class="subtag">Focus + Execution</span><button type="button" class="inline-button" data-mode="arena">Explore ↗</button></div></div>
+          </article>
         </div>
-        <p class="showcase-note">All three games are playable in your browser. Click any game card to start. No downloads or account required.</p>
+        <p class="showcase-note">Game titles and descriptions are original concepts created to showcase the website design.</p>
       </div>
     </section>
-    <section id="arcade-hub" class="arcade-hub" aria-label="Phase Nine player dashboard, personal leaderboard, achievements, daily challenges, reward shop and settings"><div class="hub-wrap"><h2>Loading Player HQ…</h2><p>Enable JavaScript to view your personal arcade progress and rewards.</p></div></section>
     <section class="section section-alt" id="roster" aria-labelledby="rosterTitle">
       <div class="wrap">
         <div class="section-heading reveal"><div><div class="eyebrow">Meet the squad</div><h2 id="rosterTitle">Built different. <span>Together.</span></h2></div><p>A fictional roster illustrating how an esports team could showcase player roles and personality.</p></div>
@@ -229,12 +227,10 @@
       </div>
     </section>
     <section class="about-band" id="about"><div class="wrap about-inner"><div><div class="eyebrow">Designed by Nexora Studios</div><h2>Crafted for the <span style="color:var(--cyan)">next generation.</span></h2><p>PHASE NINE is an original esports website concept showcasing immersive visual design, responsive layouts, and functional interactions. It is not an actual esports organization or event registration service.</p></div><a href="https://alewismike-ux.github.io/#portfolio" class="btn primary">← Back to Nexora Studios</a></div></section>
-  </main>
+  <section id="arcade-hub" class="arcade-hub"></section></main>
   <footer class="footer"><div class="wrap"><div class="footer-main"><a href="#top" class="brand"><span class="brand-symbol">9</span><span>PHASE <em>NINE</em></span></a><a href="https://alewismike-ux.github.io/" class="btn secondary small">← Return to Nexora Studios</a></div><div class="footer-sub"><span>© <span id="year">2026</span> Phase Nine · Site concept by Nexora Studios</span><a href="#top">Back to top ↑</a></div></div></footer>
-  <script src="progress.js"></script>
-  <script src="arcade-ui.js"></script>
-  <script src="next-ui.js"></script>
-  <script>
+  <dialog id="modeDialog" aria-labelledby="dialogTitle"><button type="button" class="close-modal" id="closeDialog" aria-label="Close game mode details">×</button><div class="eyebrow">Arena briefing</div><h2 id="dialogTitle">Game mode</h2><p id="dialogDescription"></p><ul id="dialogFeatures"></ul><button class="btn primary" id="dialogDone" type="button">Back to arena</button></dialog>
+  <script src="progress.js"></script><script src="arcade-ui.js"></script><script src="next-ui.js"></script><script>
     // Responsive navigation
     const menuButton=document.getElementById('menuButton');
     const navItems=document.getElementById('navItems');
@@ -248,6 +244,27 @@
       document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
       cards.forEach(card=>card.hidden=chosen!=='all'&&card.dataset.category!==chosen);
     }));
+    // Interactive game briefings: original fictional concepts, no signup or payment
+    const briefs={
+      tactical:{title:'Rift Protocol',desc:'A tactical team challenge built around coordinated objectives, fast communication, and smart decision-making.',features:['Plan your approach with your squad','Balance patience and aggressive plays','Win through teamwork and precision']},
+      racing:{title:'Overdrive X',desc:'A futuristic racing concept where speed is important, but controlling every turn matters just as much.',features:['Master high-speed cornering','Choose your racing line','Improve with every lap']},
+      arena:{title:'Zero Hour',desc:'An arena-style competition concept where strategy, timing, and adaptability take center stage.',features:['Fight for arena control','Adapt to each new opponent','Focus on clean execution']}
+    };
+    const dlg=document.getElementById('modeDialog');
+    let lastOpener;
+    document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{
+      lastOpener=button;
+      const b=briefs[button.dataset.mode];
+      document.getElementById('dialogTitle').textContent=b.title;
+      document.getElementById('dialogDescription').textContent=b.desc;
+      const list=document.getElementById('dialogFeatures');list.replaceChildren();
+      b.features.forEach(txt=>{const li=document.createElement('li');li.textContent=txt;list.appendChild(li);});
+      if(typeof dlg.showModal==='function')dlg.showModal();
+    }));
+    function closeDialog(){dlg.close();if(lastOpener)lastOpener.focus();}
+    document.getElementById('closeDialog').addEventListener('click',closeDialog);
+    document.getElementById('dialogDone').addEventListener('click',closeDialog);
+    dlg.addEventListener('click',e=>{if(e.target===dlg)closeDialog();});
     // Reveal animations, with a graceful fallback
     const reveal=[...document.querySelectorAll('.reveal')];
     if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
