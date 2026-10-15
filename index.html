@@ -242,6 +242,18 @@ section {
   border-color: var(--purple);
   box-shadow: 0 15px 40px #7d45ea30;
 }
+ 
+a.project-live {
+  display: block;
+  cursor: pointer;
+}
+a.project-live:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+a.project-live .btn {
+  pointer-events: none;
+}
 
 .project-art {
   height: 210px;
@@ -572,10 +584,12 @@ footer {
 
   <div class="grid">
 
-    <article class="card reveal">
+    <a class="card reveal project-live"
+       href="https://alewismike-ux.github.io/apex-athletics-demo/"
+       aria-label="Open the live Apex Athletics website demo">
       <div class="project-art track">⚡</div>
       <div class="card-body">
-        <span class="tag">Demo Project</span>
+        <span class="tag">Live Demo</span>
         <h3>Apex Athletics</h3>
         <p>
           A completed track and field website demo
@@ -584,14 +598,10 @@ footer {
         </p>
         <span class="tag">HTML · CSS · JavaScript</span>
         <div style="margin-top: 20px">
-          <a class="btn secondary"
-             href="https://alewismike-ux.github.io/apex-athletics-demo/"
-             target="_blank" rel="noopener noreferrer">
-            View Live Demo ↗
-          </a>
+          <span class="btn secondary">View Live Demo ↗</span>
         </div>
       </div>
-    </article>
+    </a>
 
     <article class="card reveal">
       <div class="project-art cafe">☕</div>
